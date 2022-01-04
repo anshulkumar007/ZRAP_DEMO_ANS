@@ -1,0 +1,41 @@
+managed; // implementation in class zbp_i_emp_details unique;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+with draft;
+define behavior for ZI_EMP_DETAILS alias EMPDetails
+implementation in class zbp_i_emp_details unique
+persistent table ZEMP_DETAILS_UN
+draft table zdr_emp_details
+lock master total etag Last_Changed_At
+//authorization master ( instance )
+etag master Local_Last_Changed_At
+{
+  create;
+  update;
+ // delete;
+  field (numbering : managed, readonly) ID;
+  field(readonly) Active, Salary;
+  field(readonly) Last_Changed_At, Local_Last_Changed_At;
+
+  action (features : instance) setActive result [1] $self;
+  determination changeSalary on save { field Role; }
+  validation validateAge on save {field Age;create;}
+
+  mapping for ZEMP_DETAILS_UN
+  {
+  ID = id;
+  FIRSTNAME = firstname;
+  LASTNAME = lastname;
+  Age = age;
+  Role = role;
+  Salary = salary;
+  Active = active;
+  Last_Changed_At = last_changed_at;
+  Local_Last_Changed_At = local_last_changed_at;
+
+
+
+  }
+
+
+
+}

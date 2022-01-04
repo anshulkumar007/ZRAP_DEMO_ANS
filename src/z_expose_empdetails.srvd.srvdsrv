@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Emp Details'
+define service Z_EXPOSE_EMPDetails {
+  expose ZC_EMP_DETAILS as EMPDetails;
+}

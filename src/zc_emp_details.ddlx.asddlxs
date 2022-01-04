@@ -1,0 +1,43 @@
+@Metadata.layer: #CORE
+@UI:{ 
+headerInfo: { typeName: 'Emp Detail',
+              typeNamePlural: 'Emp Details',
+              title: { type: #STANDARD, label: 'EMPDetails', value: 'ID'  } },
+              presentationVariant: [ { sortOrder: [ { by: 'ID', direction: #ASC } ] } ]}
+annotate view ZC_EMP_DETAILS
+    with 
+{
+    @UI.facet: [{id: 'EMPDetails',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'EMPDetail',
+                 position: 10 }]
+     @UI:{ identification: [{ position: 1, label: 'Id' } ] }
+     ID;
+      @UI:{ lineItem: [ { position: 20 } ],
+      identification: [{ position: 20 } ],
+      selectionField: [ { position: 20 } ] }
+      FIRSTNAME;
+         @UI:{ lineItem: [ { position: 30 } ],
+      identification: [{ position: 30 } ],
+      selectionField: [ { position: 30 } ] }
+      LASTNAME;
+           @UI:{ lineItem: [ { position: 40 } ],
+      identification: [{ position: 40 } ] }
+      Age;
+            @UI:{ lineItem: [ { position: 50 } ],
+      identification: [{ position: 50 } ] }
+      Role;
+           @UI:{ lineItem: [ { position: 60 } ],
+      identification: [{ position: 60 } ],
+      selectionField: [ { position: 60 } ] }
+      Salary;
+             @UI:{ lineItem: [ { position: 70 }, { type: #FOR_ACTION, dataAction: 'setActive', label: 'Active' } ],
+               identification: [{ position: 70 },  { type: #FOR_ACTION, dataAction: 'setActive', label: 'Active' }  ]
+     }
+      Active;
+      @UI.hidden: true
+      Last_Changed_At;
+      @UI.hidden: true
+      Local_Last_Changed_At;
+}

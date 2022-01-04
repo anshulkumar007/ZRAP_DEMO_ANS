@@ -1,0 +1,141 @@
+@Metadata.layer: #CORE
+@UI:{ 
+headerInfo:{ 
+typeName: 'Purchase Document',
+typeNamePlural: 'Purchase Documents',
+title:{ value: 'PurchaseDoc', type: #STANDARD  },
+description:{ value: 'Description', type: #STANDARD  }
+}
+}
+annotate view ZC_ANSH_TOTAL_PRICE
+    with 
+{
+
+@UI.facet: [
+{
+
+id: 'Status',
+type: #DATAPOINT_REFERENCE,
+purpose: #HEADER,
+targetQualifier: 'Status'
+
+
+ },
+ {
+
+id: 'Priority',
+type: #DATAPOINT_REFERENCE,
+purpose: #HEADER,
+targetQualifier: 'Priority'
+
+
+ },
+  {
+
+id: 'ItemTotalPrice',
+type: #DATAPOINT_REFERENCE,
+purpose: #HEADER,
+targetQualifier: 'ItemTotalPrice'
+
+
+ },
+ 
+ //Parent: Collection facet
+ 
+   {
+
+id: 'PurchaseCollection',
+type: #COLLECTION,
+purpose: #STANDARD,
+label: 'Purchase Details'
+
+ },
+ 
+ 
+ 
+ 
+ 
+ //Child section1: Collection facet
+    {
+
+id: 'PurchaseSection',
+type: #FIELDGROUP_REFERENCE,
+parentId: 'PurchaseCollection',
+targetQualifier: 'PurchaseBasicData',
+label: 'Purchase Information'
+ },
+ 
+ //Child Section2:Collection Facet
+ { 
+ 
+ id: 'AdminData',
+ type: #FIELDGROUP_REFERENCE,
+ parentId: 'PurchaseCollection',
+ targetQualifier: 'AdminData',
+ label: 'Admin Data'
+ 
+ },
+ 
+ //Another Tab as Line Item
+ { 
+ id: 'PurchaseItem',
+ type: #LINEITEM_REFERENCE,
+ purpose: #STANDARD,
+ label: 'Purchase Items',
+ targetElement: '_PurchaseItem'
+ 
+ 
+ }
+ 
+ 
+ ]
+
+
+
+
+
+
+@UI.lineItem: [{ position: 10, importance: #HIGH, label: 'Purchase Document'}]
+@UI.selectionField: [{position: 10 }]
+@UI.fieldGroup: [{position: 10, label: 'Purchase Document', qualifier: 'PurchaseBasicData' }]
+    PurchaseDoc;
+@UI.lineItem: [{ position: 20, importance: #HIGH, label: 'Purchase Item Total Price'}]
+@UI.dataPoint:{ title: 'ItemTotalPrice' }
+@UI.fieldGroup: [{position: 20, label: 'Total Price', qualifier: 'PurchaseBasicData' }]
+    ItemTotalPrice;
+@UI.lineItem: [{ position: 30, importance: #HIGH, label: 'Currency'}]
+    Currency;
+@UI.lineItem: [{ position: 40, importance: #HIGH, label: 'Purchase Doc Text'}]
+@UI.fieldGroup: [{position: 30, label: 'Descrition', qualifier: 'PurchaseBasicData' }]
+    Description;
+@UI.lineItem: [{ position: 50, importance: #HIGH, label: 'Company Code'}]
+@UI.selectionField: [{position: 20 }]
+    CompanyCode;
+@UI.lineItem: [{ position: 60, importance: #HIGH, label: 'Document Category'}]
+    DocCategory;
+@UI.lineItem: [{ position: 70, importance: #HIGH, label: 'Purchase Org'}]
+    PruchOrg;
+@UI.lineItem: [{ position: 80, importance: #HIGH, label: 'Status'}]
+@UI.selectionField: [{position: 30 }]
+@UI.dataPoint:{ title: 'Status' }
+@UI.textArrangement: #TEXT_ONLY
+@UI.fieldGroup: [{position: 40, label: 'Status', qualifier: 'PurchaseBasicData' }]
+    Status;
+@UI.lineItem: [{ position: 90, importance: #HIGH, label: 'Priority'}]
+@UI.selectionField: [{position: 40 }]
+@UI.dataPoint:{ title: 'Priority' }
+@UI.textArrangement: #TEXT_ONLY
+    Priority;
+@UI.lineItem: [{ position: 100, importance: #HIGH, label: 'Creation Time/Date'}]
+@UI.fieldGroup: [{position: 10, label: 'Creation Date/Time', qualifier: 'AdminData' }]
+    CrTimeDate;
+@UI.lineItem: [{ position: 110, importance: #HIGH, label: 'Created By'}]
+@UI.fieldGroup: [{position: 20, label: 'Created By', qualifier: 'AdminData' }]
+    CreateBy;
+@UI.lineItem: [{ position: 120, importance: #HIGH, label: 'Change Time/Date'}]
+    ChTimeDate;
+@UI.lineItem: [{ position: 130, importance: #HIGH, label: 'Change By'}]
+    ChangeBy;
+
+    
+}
